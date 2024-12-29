@@ -58,20 +58,80 @@ The program will be evaluated only after the “Submit Code” is clicked.
 Extra spaces and new line characters in the program output will result in the failure of the test case.
 Marks : 10
 Negative Marks : 0
-// You are using GCC*/
-#include<bits/stdc++.h>
-using namespace std;
-int main(){
-    int num;
-    vector<int>v;
-    while(cin>>num)
-    {
-        v.push_back(num);
-        
+/ You are using GCC*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+
+#define MAX_NODES 100
+// #define max(a,b) ((a)>(b) ? (a) : (b))
+// #define min(a,b) ((a)<(b) ? (a) : (b))
+struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+struct Node* insertBST(struct Node* root, int data) {
+    if (root == NULL) {
+        return createNode(data);
     }
-    sort(v.begin(),v.end());
-    for(int n:v)
-    {
-        cout<<n<<" ";
+    if (data < root->data) {
+        root->left = insertBST(root->left, data);
+    } else {
+        root->right = insertBST(root->right, data);
     }
+    return root;
+}
+
+void preorderTraversalAndCalculateDifference(struct Node* root, int &maxVal, int &minVal) {
+    //Type your code here
+    if(root==NULL)
+    return;
+    printf("%d",root->data);
+    printf("%s"," ");
+  if(maxVal<root->data)
+  {
+      maxVal=root->data;
+  }
+  if(minVal>root->data)
+  {
+      minVal=root->data;
+  }
+   
+    preorderTraversalAndCalculateDifference(root->left,maxVal,minVal);
+    preorderTraversalAndCalculateDifference(root->right,maxVal,minVal);
+    
+    
+}
+
+int main() {
+    struct Node* root = NULL;
+    int n, data;
+
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &data);
+        root = insertBST(root, data);
+    }
+
+    int maxVal = INT_MIN;
+    int minVal = INT_MAX;
+
+    preorderTraversalAndCalculateDifference(root, maxVal, minVal);
+    printf("\n");
+
+    int difference = maxVal - minVal;
+    printf("%d", difference);
+
+    return 0;
 }
