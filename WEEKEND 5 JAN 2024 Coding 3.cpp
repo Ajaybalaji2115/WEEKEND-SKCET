@@ -1,57 +1,68 @@
 /*Single File Programming Question
-Problem statement
+Problem Statement
 
 
 
-The task is to decode a sequence of length at most 8, where the sequence consists of the letters "I" and "D". "I" represents an increasing sequence, while "D" represents a decreasing sequence. The decoded sequence should consist of a minimum number with no repeated digits
-
-Example:
-
-Input:
-
-DI
-
-Output:
-
-213
+Given a graph G consisting of N nodes, a source S, and an array edges[][2] of type {u, v} that denotes that there is an undirected edge between node u and v, the task is to traverse the graph in lexicographical order using a Breadth-First Search(BFS) algorithm.
 
 
 
-Explanation:
+Input: 
 
-For each element of the given sequence, insert its position index+1 into a memory that stores it in FILO order. If the current character is increasing 'I' or all characters of the input sequence are processed, pop all numbers from the stack and append them to the output string.
-Input should contain characters I and D in uppercase(lowercase is not allowed)
+N = 10, M = 10, S = ‘a’, 
+
+edges[][2] = { { ‘a’, ‘y’ }, { ‘a’, ‘z’ }, { ‘a’, ‘p’ }, { ‘p’, ‘c’ }, { ‘p’, ‘b’ }, { ‘y’, ‘m’ }, { ‘y’, ‘l’ }, { ‘z’, ‘h’ }, { ‘z’, ‘g’ }, { ‘z’, ‘i’ } } 
+
+
+
+Output: 
+
+a p y z b c l m g h i
+
+
+
 Input format :
-Input should consist of a String.
+The first line of input is the number of nodes N in the graph.
+
+The second line consists of the number of edges M of the graph.
+
+The following lines consist of the edge information.
+
+The last line is the source character S through which the graph has to be traversed.
 
 Output format :
-The output should be the decoded version of the input.
+The output is the lexicographical order of traversal using BFS.
+
+
+
+Refer to the sample output for formatting specifications.
 
 Code constraints :
-Input should be combination of characters I and D in uppercase
+1 ≤ N, M ≤ 10
 
 Sample test cases :
 Input 1 :
-I
+10
+10
+a y
+a z
+a p
+p c
+p b
+y m
+y l
+z h
+z g
+z i
+a
 Output 1 :
-12
-Input 2 :
-DI
-Output 2 :
-213
-Input 3 :
-abID
-Output 3 :
-Invalid input
-Input 4 :
-id
-Output 4 :
-Invalid input
+a p y z b c l m g h i 
 Note :
 The program will be evaluated only after the “Submit Code” is clicked.
 Extra spaces and new line characters in the program output will result in the failure of the test case.
 Marks : 10
-Negative Marks : 0// You are using GCC*/
+Negative Marks : 0*/
+// You are using GCC
 #include<bits/stdc++.h>
 using namespace std;
 void bfslexicographical(char source,map<char,vector<char>>&graph)
